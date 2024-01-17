@@ -52,7 +52,7 @@
           <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="https://diskominfo.sijunjung.go.id/"><i class="bi-house-fill text-success"></i></a></li>
-              <li class="breadcrumb-item" aria-current="page">Dashboard</li>
+              <li class="breadcrumb-item" aria-current="page"><a href="../index.php">Dashboard</a></li>
               <li class="breadcrumb-item" aria-current="page">Antrian</li>
             </ol>
           </nav>

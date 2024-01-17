@@ -35,30 +35,29 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body class="d-flex flex-column h-100">
+<body id="full" class="d-flex flex-column h-100">
   <main class="flex-shrink-0">
     <div class="container pt-5">
       <div class="row justify-content-lg-center">
         <div class="col-lg-5 mb-4">
           <div class="px-4 py-3 mb-4 bg-white rounded-2 shadow-sm">
-            <!-- judul halaman -->
-            <div class="d-flex align-items-center me-md-auto">
+          <!-- judul halaman -->
+          <div class="d-flex align-items-center me-md-auto">
               <i class="bi-people-fill text-success me-3 fs-3"></i>
-              <h1 class="h5 pt-2">Nomor Antrian</h1>
-            </div>
-          </div>
+              <h1 class="h5 pt-2">Pilih Loket</h1>
+          </div>       
+        </div>
 
           <div class="card border-0 shadow-sm">
             <div class="card-body text-center d-grid p-5">
               <div class="border border-success rounded-2 py-2 mb-5">
-                <h3 class="pt-4">ANTRIAN</h3>
-                <!-- menampilkan informasi jumlah antrian -->
-                <h1 id="antrian" class="display-1 fw-bold text-success text-center lh-1 pb-2"></h1>
+              <ul style="list-style-type:none;">
+              <li><button id="loket1" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 1</button></li>
+              <li><button id="loket2" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 2</button></li>
+              <li><button id="loket3" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 3</button></li>
+              <li><button id="loket4" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 4</button></li>
+              </ul>
               </div>
-              <!-- button pengambilan nomor antrian -->
-              <a id="insert" href="javascript:void(0)" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">
-                <i class="bi-person-plus fs-4 me-2"></i> Ambil Nomor
-              </a>
             </div>
           </div>
         </div>
@@ -85,23 +84,23 @@
   <script type="text/javascript">
     $(document).ready(function() {
       // tampilkan jumlah antrian
-      $('#antrian').load('get_antrian.php');
+      //$('#loket1').load('loket1.php');
 
       // proses insert data
-      $('#insert').on('click', function() {
-        $.ajax({
-          type: 'POST',                     // mengirim data dengan method POST
-          url: 'insert.php',                // url file proses insert data
-          success: function(result) {       // ketika proses insert data selesai
-            // jika berhasil
-            if (result === 'Sukses') {
-              // tampilkan jumlah antrian
-              $('#antrian').load('get_antrian.php').fadeIn('slow');
-            }
-          },
+      $('#loket1').on('click', function() {
+              $('#full').load('loket1.php').fadeIn('slow');
+            });
+      $('#loket2').on('click', function() {
+              $('#full').load('loket2.php').fadeIn('slow');
+            });
+      $('#loket3').on('click', function() {
+              $('#full').load('loket3.php').fadeIn('slow');
+            });
+      $('#loket4').on('click', function() {
+              $('#full').load('loket4.php').fadeIn('slow');
+            });
         });
-      });
-    });
+      
   </script>
 </body>
 
