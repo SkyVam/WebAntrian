@@ -9,7 +9,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH
   $tanggal = gmdate("Y-m-d", time() + 60 * 60 * 7);
 
   // sql statement untuk menampilkan jumlah data dari tabel "tbl_antrian" berdasarkan "tanggal"
-  $query = mysqli_query($mysqli, "SELECT count(id) as jumlah FROM tbl_antrian 
+  $query = mysqli_query($mysqli, "SELECT count(id) as jumlah FROM tbl_antrian4 
                                   WHERE tanggal='$tanggal'")
                                   or die('Ada kesalahan pada query tampil data : ' . mysqli_error($mysqli));
   // ambil data hasil query
