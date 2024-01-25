@@ -85,18 +85,26 @@
     $(document).ready(function() {
       // proses insert data
       $("#loket1").click(function() {
+              var loket = $(this).attr('id');
+              document.cookie = loket;
               $('#full').load('loket.php').fadeIn('slow');
             });
 
       $("#loket2").click(function() {
+              var loket = $(this).attr('id');
+              document.cookie = loket;
                 $('#full').load('loket.php').fadeIn('slow');
               });
 
       $("#loket3").click(function() {
+              var loket = $(this).attr('id');
+              document.cookie = loket;
               $('#full').load('loket.php').fadeIn('slow');
             });
 
       $("#loket4").click(function() {
+              var loket = $(this).attr('id');
+              document.cookie = loket;
               $('#full').load('loket.php').fadeIn('slow');
             });
         });

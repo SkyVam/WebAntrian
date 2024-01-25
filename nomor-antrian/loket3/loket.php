@@ -45,20 +45,24 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
   <script type="text/javascript">
+
     $(document).ready(function() {
+      
       // tampilkan jumlah antrian
       $('#antrian').load('get_antrian.php');
 
       // proses insert data
       $('#insert').on('click', function() {
+        var loket = document.cookie;
         $.ajax({
           type: 'POST',                     // mengirim data dengan method POST
           url: 'insert.php',                // url file proses insert data
+          data: { loket: loket },
           success: function(result) {       // ketika proses insert data selesai
             // jika berhasil
             if (result === 'Sukses') {
               // tampilkan jumlah antrian
-              $('#antrian').load('get_antrian2.php').fadeIn('slow');
+              $('#antrian').load('get_antrian.php').fadeIn('slow');
             }
           },
         });
