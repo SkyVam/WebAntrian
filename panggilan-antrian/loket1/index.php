@@ -20,7 +20,7 @@
   <title>Aplikasi Antrian Berbasis Web</title>
 
   <!-- Favicon icon -->
-  <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/x-icon">
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -35,7 +35,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 
   <!-- Custom Style -->
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -69,8 +69,8 @@
                   <i class="bi-people text-warning"></i>
                 </div>
                 <div>
-                  <p id="jumlah-antrian" class="fs-3 text-warning"></p>
-                  <a href="loket1" class="mb-0">Loket 1</a>
+                  <p id="jumlah-antrian" class="fs-3 text-warning mb-1"></p>
+                  <p class="mb-0">Jumlah Antrian</p>
                 </div>
               </div>
             </div>
@@ -85,8 +85,8 @@
                   <i class="bi-person-check text-success"></i>
                 </div>
                 <div>
-                  <p id="antrian-sekarang" class="fs-3 text-success"></p>
-                  <a href="loket2" class="mb-0">Loket 2</a>
+                  <p id="antrian-sekarang" class="fs-3 text-success mb-1"></p>
+                  <p class="mb-0">Antrian Sekarang</p>
                 </div>
               </div>
             </div>
@@ -101,8 +101,8 @@
                   <i class="bi-person-plus text-info"></i>
                 </div>
                 <div>
-                  <p id="antrian-selanjutnya" class="fs-3 text-info"></p>
-                  <a href="loket3" class="mb-0">Loket 3</a>
+                  <p id="antrian-selanjutnya" class="fs-3 text-info mb-1"></p>
+                  <p class="mb-0">Antrian Selanjutnya</p>
                 </div>
               </div>
             </div>
@@ -117,14 +117,37 @@
                   <i class="bi-person text-danger"></i>
                 </div>
                 <div>
-                  <p id="sisa-antrian" class="fs-3 text-danger"></p>
-                  <a href="loket4" class="mb-0">Loket 4</a>
+                  <p id="sisa-antrian" class="fs-3 text-danger mb-1"></p>
+                  <p class="mb-0">Antrian Bersisa</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <div class="table-responsive">
+            <table id="tabel-antrian" class="table table-bordered table-striped table-hover" width="100%">
+              <thead>
+                <tr>
+                  <th>Nomor Antrian</th>
+                  <th>Status</th>
+                  <th>Panggil</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="d-flex flex-column flex-md-row px-4 py-3 mb-4 bg-white rounded-2 shadow-sm justify-content-center">
+        <!-- Hapus Data -->
+          <button id="delete" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Hapus Data</button>
+      </div>
+    </div>
+
   </main>
 
   <!-- Footer -->
@@ -153,6 +176,113 @@
   <!-- Get API Key -> https://responsivevoice.org/ -->
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=jQZ2zcdq"></script>
 
- </body>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // tampilkan informasi antrian
+      $('#jumlah-antrian').load('get_jumlah_antrian.php');
+      $('#antrian-sekarang').load('get_antrian_sekarang.php');
+      $('#antrian-selanjutnya').load('get_antrian_selanjutnya.php');
+      $('#sisa-antrian').load('get_sisa_antrian.php');
+
+      // menampilkan data antrian menggunakan DataTables
+      var table = $('#tabel-antrian').DataTable({
+        "lengthChange": false,              // non-aktifkan fitur "lengthChange"
+        "searching": false,                 // non-aktifkan fitur "Search"
+        "ajax": "get_antrian.php",          // url file proses tampil data dari database
+        // menampilkan data
+        "columns": [{
+            "data": "no_antrian",
+            "width": '250px',
+            "className": 'text-center'
+          },
+          {
+            "data": "status",
+            "visible": false
+          },
+          {
+            "data": null,
+            "orderable": false,
+            "searchable": false,
+            "width": '100px',
+            "className": 'text-center',
+            "render": function(data, type, row) {
+              // jika tidak ada data "status"
+              if (data["status"] === "") {
+                // sembunyikan button panggil
+                var btn = "-";
+              } 
+              // jika data "status = 0"
+              else if (data["status"] === "0") {
+                // tampilkan button panggil
+                var btn = "<button class=\"btn btn-success btn-sm rounded-circle\"><i class=\"bi-mic-fill\"></i></button>";
+              } 
+              // jika data "status = 1"
+              else if (data["status"] === "1") {
+                // tampilkan button ulangi panggilan
+                var btn = "<button class=\"btn btn-secondary btn-sm rounded-circle\"><i class=\"bi-mic-fill\"></i></button>";
+              };
+              return btn;
+            }
+          },
+        ],
+        "order": [
+          [0, "desc"]             // urutkan data berdasarkan "no_antrian" secara descending
+        ],
+        "iDisplayLength": 10,     // tampilkan 10 data per halaman
+      });
+
+      // panggilan antrian dan update data
+      $('#tabel-antrian tbody').on('click', 'button', function() {
+        // ambil data dari datatables 
+        var data = table.row($(this).parents('tr')).data();
+        // buat variabel untuk menampilkan data "id"
+        var id = data["id"];
+        // buat variabel untuk menampilkan audio bell antrian
+        var bell = document.getElementById('tingtung');
+
+        // mainkan suara bell antrian
+        bell.pause();
+        bell.currentTime = 0;
+        bell.play();
+
+        // set delay antara suara bell dengan suara nomor antrian
+        durasi_bell = bell.duration * 770;
+
+        // mainkan suara nomor antrian
+        setTimeout(function() {
+          responsiveVoice.speak("Nomor Antrian, " + data["no_antrian"] + ", menuju, loket, 1", "Indonesian Male", {
+            rate: 0.9,
+            pitch: 1,
+            volume: 1
+          });
+        }, durasi_bell);
+
+        // proses update data
+        $.ajax({
+          type: "POST",               // mengirim data dengan method POST
+          url: "update.php",          // url file proses update data
+          data: { id: id }            // tentukan data yang dikirim
+        });
+      });
+
+      // hapus semua data
+      $('#delete').on('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: 'delete.php',
+          });
+        });
+
+      // auto reload data antrian setiap 1 detik untuk menampilkan data secara realtime
+      setInterval(function() {
+        $('#jumlah-antrian').load('get_jumlah_antrian.php').fadeIn("slow");
+        $('#antrian-sekarang').load('get_antrian_sekarang.php').fadeIn("slow");
+        $('#antrian-selanjutnya').load('get_antrian_selanjutnya.php').fadeIn("slow");
+        $('#sisa-antrian').load('get_sisa_antrian.php').fadeIn("slow");
+        table.ajax.reload(null, false);
+      }, 1000);
+    });
+  </script>
+</body>
 
 </html>

@@ -3,13 +3,13 @@
 // jika ada ajax request
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
   // panggil file "database.php" untuk koneksi ke database
-  require_once "../config/database.php";
+  require_once "../../config/database.php";
 
   // ambil tanggal sekarang
   $tanggal = gmdate("Y-m-d", time() + 60 * 60 * 7);
 
   // sql statement untuk menampilkan data dari tabel "tbl_antrian" berdasarkan "tanggal"
-  $query = mysqli_query($mysqli, "SELECT id, no_antrian, status FROM tbl_antrian 
+  $query = mysqli_query($mysqli, "SELECT id, no_antrian, status FROM tbl_antrian3 
                                   WHERE tanggal='$tanggal'")
                                   or die('Ada kesalahan pada query tampil data : ' . mysqli_error($mysqli));
   // ambil jumlah baris data hasil query

@@ -3,10 +3,10 @@
 // jika ada ajax request
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
   // panggil file "database.php" untuk koneksi ke database
-  require_once "../config/database.php";
+  require_once "../../config/database.php";
 
   // sql statement untuk menghapus data
-  $delete = mysqli_query($mysqli, "DELETE FROM tbl_antrian")
+  $delete = mysqli_query($mysqli, "DELETE FROM tbl_antrian4")
     or die('Ada kesalahan pada query tampil data : ' . mysqli_error($mysqli));
 
     if ($delete) {
