@@ -51,7 +51,7 @@
         <div class="ms-5 ms-md-0 pt-md-3 pb-md-0">
           <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="https://diskominfo.sijunjung.go.id/"><i class="bi-house-fill text-success"></i></a></li>
+              <li class="breadcrumb-item"><i class="bi-house-fill text-success"></i></a></li>
               <li class="breadcrumb-item" aria-current="page"><a href="../index.php">Dashboard</a></li>
               <li class="breadcrumb-item" aria-current="page">Antrian</li>
             </ol>
@@ -141,11 +141,6 @@
           </div>
         </div>
       </div>
-      
-      <div class="d-flex flex-column flex-md-row px-4 py-3 mb-4 bg-white rounded-2 shadow-sm justify-content-center">
-        <!-- Hapus Data -->
-          <button id="delete" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Hapus Data</button>
-      </div>
     </div>
 
   </main>
@@ -162,7 +157,7 @@
   </footer>
 
   <!-- load file audio bell antrian -->
-  <audio id="tingtung" src="../assets/audio/tingtung.mp3"></audio>
+  <audio id="tingtung" src="../../assets/audio/tingtung.mp3"></audio>
 
   <!-- jQuery Core -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -226,7 +221,7 @@
           },
         ],
         "order": [
-          [0, "desc"]             // urutkan data berdasarkan "no_antrian" secara descending
+          [0, "asc"]             // urutkan data berdasarkan "no_antrian" secara descending
         ],
         "iDisplayLength": 10,     // tampilkan 10 data per halaman
       });
@@ -264,14 +259,6 @@
           data: { id: id }            // tentukan data yang dikirim
         });
       });
-
-      // hapus semua data
-      $('#delete').on('click', function(){
-        $.ajax({
-            type: 'POST',
-            url: 'delete.php',
-          });
-        });
 
       // auto reload data antrian setiap 1 detik untuk menampilkan data secara realtime
       setInterval(function() {

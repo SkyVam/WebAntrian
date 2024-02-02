@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body id="full" class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100">
   <main class="flex-shrink-0">
     <div class="container pt-5">
       <div class="row justify-content-lg-center">
@@ -51,10 +51,10 @@
           <div class="card border-0 shadow-sm">
             <div class="card-body text-center d-grid p-5">
               <div class="border border-success rounded-2 py-2">
-              <a href="loket1" id="loket1" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 1</a></br>
-              <a href="loket2" id="loket2" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 2</a></br>
-              <a href="loket3" id="loket3" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 3</a></br>
-              <a href="loket4" id="loket4" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 4</a></br>
+              <a href="loket1" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 1</a></br>
+              <a href="loket2" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 2</a></br>
+              <a href="loket3" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 3</a></br>
+              <a href="loket4" class="btn btn-success btn-block rounded-pill fs-5 px-5 py-4 mb-2">Loket 4</a></br>
               </ul>
               </div>
             </div>
