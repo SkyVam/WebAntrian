@@ -1,6 +1,13 @@
 <?php
 // pengecekan ajax request untuk mencegah direct access file, agar file tidak bisa diakses secara langsung dari browser
 // jika ada ajax request
+session_start();
+ 
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../login/index.php");
+    exit(); // Terminate script execution after the redirect
+}
+
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
   // panggil file "database.php" untuk koneksi ke database
   require_once "../../config/database.php";

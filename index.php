@@ -71,7 +71,7 @@
               </div>
               <h3>Panggilan Antrian</h3>
               <p class="mb-4">Halaman Panggilan Antrian digunakan petugas loket untuk memanggil antrian pengunjung.</p>
-              <a href="panggilan-antrian" class="btn btn-success rounded-pill px-4 py-2">
+              <a href="login" class="btn btn-success rounded-pill px-4 py-2">
                 Tampilkan <i class="bi-chevron-right ms-2"></i>
               </a>
             </div>

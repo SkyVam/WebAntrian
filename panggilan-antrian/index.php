@@ -5,6 +5,14 @@
 * E-mail      : yuskaputravito@gmail.com
 * WhatsApp    : +62-822-8328-1770
 -->
+<?php
+session_start();
+ 
+if (!isset($_SESSION['username'])) {
+    header("Location: ../login/index.php");
+    exit(); // Terminate script execution after the redirect
+}
+?>
 
 <!doctype html>
 <html lang="en" class="h-100">
